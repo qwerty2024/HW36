@@ -352,8 +352,8 @@ void MainWindow::on_pushButton_send_clicked()
     {
         QString str = ui->lineEdit->text();
         if (str == "") return;
-        for_send(str);
         ui->tabWidget->widget(index)->findChild<QTextEdit *>("textBrowser")->append(login + ": " + str);
+        for_send(str);
         QString recver = ui->tabWidget->tabText(index);
         SendToServer("@private_one_msg " + login + " " + recver + " #" + str);
         ui->lineEdit->clear();
@@ -378,8 +378,8 @@ void MainWindow::on_lineEdit_returnPressed()
     {
         QString str = ui->lineEdit->text();
         if (str == "") return;
-        for_send(str);
         ui->tabWidget->widget(index)->findChild<QTextEdit *>("textBrowser")->append(login + ": " + str);
+        for_send(str);
         QString recver = ui->tabWidget->tabText(index);
         SendToServer("@private_one_msg " + login + " " + recver + " #" + str);
         ui->lineEdit->clear();
