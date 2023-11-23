@@ -191,7 +191,8 @@ void MainWindow::slotReadyRead()
                     ui->tabWidget->setCurrentIndex(index);
                 }
 
-                ui->tabWidget->widget(index)->findChild<QTextEdit *>("textBrowser")->append(tmp_sender + ": " + msg);
+                if (login != tmp_sender)
+                    ui->tabWidget->widget(index)->findChild<QTextEdit *>("textBrowser")->append(tmp_sender + ": " + msg);
 
                 break;
             }
@@ -378,9 +379,8 @@ void MainWindow::on_lineEdit_returnPressed()
     {
         QString str = ui->lineEdit->text();
         if (str == "") return;
-        ui->tabWidget->widget(index)->findChild<QTextEdit *>("textBrowser")->append(login + ": " + str);
-        for_send(str);
         QString recver = ui->tabWidget->tabText(index);
+        for_send(str);      
         SendToServer("@private_one_msg " + login + " " + recver + " #" + str);
         ui->lineEdit->clear();
     }
